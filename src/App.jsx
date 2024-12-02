@@ -5,15 +5,32 @@ import BlogPost from "./components/BlogPost";
 import Footer from "./components/Footer";
 import AddPostForm from "./components/AddPostForm";
 import Card from "./components/Card";
-import  {posts} from "./components/Data/posts (1)";
+import { posts as initialPosts } from "./components/Data/posts (1)";
 
 
 function App() {
-  const pubblishedPosts = posts.filter((post) => post.published); // filtro i post pubblicati
   // console.log('Pubblished posts:', pubblishedPosts);
+  
+  const [posts, setPosts] = useState(initialPosts);
+  
+  // funzione per aggiungere un nuovo posts
+  const addNewPost = (title)  => {
 
+    const newPost = {
+      id: posts.length + 1, // Genero un ID  unico chw si basa sulla lunghezza dell'array 
+      title: title,
+      content: "Questo è un nuovo post aggiunto dall'utente.", 
+      image: "", 
+      tags: [], 
+      published: true, 
+    };
+
+    setPosts([...posts, newPost]);
+    
+  }
+
+  const pubblishedPosts = posts.filter((post) => post.published); // filtro i post pubblicati
   const uniqueTags = getUniqueTags(posts)  //oottengo i tag distinti
-  const [count, setCount] = useState(0)
 
   return (
     <>
@@ -31,7 +48,7 @@ function App() {
         </div>  
       </section>   
       
-      <AddPostForm />
+      <AddPostForm addNewPost={addNewPost} />
 
       <div className={styles.cardsContainer}>
          {/* genero le card */}

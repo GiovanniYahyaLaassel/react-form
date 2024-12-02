@@ -3,6 +3,7 @@ import Header from "./components/header";
 import styles from "./App.module.css";
 import BlogPost from "./components/BlogPost";
 import Footer from "./components/Footer";
+import AddPostForm from "./components/AddPostForm";
 import Card from "./components/Card";
 import  {posts} from "./components/Data/posts (1)";
 
@@ -30,6 +31,8 @@ function App() {
         </div>  
       </section>   
       
+      <AddPostForm />
+
       <div className={styles.cardsContainer}>
          {/* genero le card */}
           {pubblishedPosts.map((post) => (
